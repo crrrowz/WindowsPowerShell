@@ -43,11 +43,11 @@ notepad $PROFILE
 # Microsoft.PowerShell_profile.ps1
 # ================================
 
-# تعاريف Alias لنسخ البايثون (حسب طلبك)
-Set-Alias python39 "C:\Program Files\Python39\python.exe"
-Set-Alias python3.12 "C:\Python312\python.exe"
+# Alias definitions for Python versions
+Set-Alias python39 "C:\\Program Files\\Python39\\python.exe"
+Set-Alias python3.12 "C:\\Python312\\python.exe"
 
-# دالة لتعيين مسار حفظ التاريخ حسب المجلد الحالي
+# Function to set the history file path based on the current location
 function Set-HistoryPathForCurrentLocation {
     $path = (Get-Location).Path
     $historyFile = Join-Path -Path $path -ChildPath "PowerShellHistory.txt"
@@ -55,10 +55,10 @@ function Set-HistoryPathForCurrentLocation {
     Write-Host "PSReadLine history file set to $historyFile"
 }
 
-# تعيين ملف السجل عند بدء الجلسة
+# Set the log file when the session starts
 Set-HistoryPathForCurrentLocation
 
-# إعادة تعيين ملف السجل تلقائيًا عند تغيير المجلد (يتطلب PowerShell 7+)
+# Automatically reset the history file when the location changes (requires PowerShell 7+)
 if ($PSVersionTable.PSVersion.Major -ge 7) {
     Register-EngineEvent PowerShell.OnLocationChanged -Action {
         Set-HistoryPathForCurrentLocation

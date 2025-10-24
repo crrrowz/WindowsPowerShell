@@ -43,24 +43,27 @@ You can add settings, aliases, or colours, for example:
 # Microsoft.PowerShell_profile.ps1
 # ================================
 
-# Change default directory
-Set-Location C:\
+# Alias definitions for Python versions
+Set-Alias python39 "C:\\Program Files\\Python39\\python.exe"
+Set-Alias python3.12 "C:\\Python312\\python.exe"
 
-# Custom aliases
-Set-Alias ll Get-ChildItem
-Set-Alias py python
-Set-Alias gs 'git status'
-Set-Alias gc 'git commit'
-Set-Alias gp 'git push'
-
-# Custom prompt
-function prompt {
-    Write-Host ("PS " + (Get-Location).Path + ">") -ForegroundColor Green -NoNewline
-    return " "
+# Function to set the history file path based on the current location
+function Set-HistoryPathForCurrentLocation {
+    $path = (Get-Location).Path
+    $historyFile = Join-Path -Path $path -ChildPath "PowerShellHistory.txt"
+    Set-PSReadLineOption -HistorySavePath $historyFile
+    Write-Host "PSReadLine history file set to $historyFile"
 }
 
-# Welcome message
-Write-Host "Welcome to PowerShell, Hassanein!" -ForegroundColor Cyan
+# Set the log file when the session starts
+Set-HistoryPathForCurrentLocation
+
+# Automatically reset the history file when the location changes (requires PowerShell 7+)
+if ($PSVersionTable.PSVersion.Major -ge 7) {
+    Register-EngineEvent PowerShell.OnLocationChanged -Action {
+        Set-HistoryPathForCurrentLocation
+    }
+}
 ```
 
 Then save and close Notepad.
