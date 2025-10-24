@@ -20,12 +20,6 @@ This allows you to easily review, search, and recover commands specific to each 
 </tr>
 </table>
 
-<p align="center">
-  <a href="https://github.com/your-repo/releases/tag/v1.0" target="_blank">
-    🖥️ Download Release V1
-  </a>
-</p>
-
 ---
 
 ## ⚙️ Project Idea
