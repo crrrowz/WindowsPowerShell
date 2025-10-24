@@ -43,9 +43,6 @@ You can add settings, aliases, or colours, for example:
 # Microsoft.PowerShell_profile.ps1
 # ================================
 
-# Alias definitions for Python versions
-Set-Alias python39 "C:\\Program Files\\Python39\\python.exe"
-Set-Alias python3.12 "C:\\Python312\\python.exe"
 
 # Function to set the history file path based on the current location
 function Set-HistoryPathForCurrentLocation {
