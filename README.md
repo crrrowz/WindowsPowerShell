@@ -1,104 +1,34 @@
-# 🔧 تفعيل وتشغيل ملف Microsoft.PowerShell_profile.ps1
+<h1 align="center">PowerShell Profile — Log Keeper</h1>
 
-يُستخدم الملف **`Microsoft.PowerShell_profile.ps1`** لإعداد البيئة الشخصية في PowerShell، مثل الأوامر التلقائية، والاختصارات، وتخصيص المظهر.  
-اتبع الخطوات التالية بدقة 👇
+<p align="center">
+  <a href="README/READMEAR.md">🇸🇦 Arabic</a> • 
+  <a href="README/READMEEN.md">🇬🇧 English</a>
+</p>
 
----
+<table>
+<tr>
+<td width="40%" align="center">
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/powershell/powershell.png" width="300" />
+</td>
+<td width="60%" valign="middle">
 
-## 🔹 أولاً: التحقق من وجود الملف
+**PowerShell Profile — Log Keeper** is an intelligent **Profile.ps1** script that automatically creates a separate PowerShell history file for each directory you work in.  
+Whenever you enter a new folder, it generates a dedicated **PowerShellHistory.txt** file that stores all executed commands and their outputs for that specific path.  
+This allows you to easily review, search, and recover commands specific to each project.
 
-افتح PowerShell (يفضل **كـمسؤول**) ثم اكتب الأمر التالي:
+</td>
+</tr>
+</table>
 
-```powershell
-Test-Path $PROFILE
-```
-
-- إذا كانت النتيجة **`True`** ✅، فالملف موجود بالفعل.  
-- إذا كانت النتيجة **`False`** ❌، أنشئ الملف باستخدام الأمر:
-
-```powershell
-New-Item -Path $PROFILE -ItemType File -Force
-```
-
----
-
-## 🔹 ثانيًا: فتح الملف للتعديل
-
-افتح الملف في المفكرة لتعديله:
-
-```powershell
-notepad $PROFILE
-```
-
-سيُفتح الملف **Microsoft.PowerShell_profile.ps1** في Notepad.
+<p align="center">
+  <a href="https://github.com/your-repo/releases/tag/v1.0" target="_blank">
+    🖥️ Download Release V1
+  </a>
+</p>
 
 ---
 
-## 🔹 ثالثًا: إضافة الأوامر التي تريد تشغيلها تلقائيًا
+## ⚙️ Project Idea
 
-يمكنك مثلاً إضافة إعدادات أو alias أو ألوان… مثل:
-
-```powershell
-# ================================
-# Microsoft.PowerShell_profile.ps1
-# ================================
-
-# Change default directory
-Set-Location C:\
-
-# Custom aliases
-Set-Alias ll Get-ChildItem
-Set-Alias py python
-Set-Alias gs 'git status'
-Set-Alias gc 'git commit'
-Set-Alias gp 'git push'
-
-# Custom prompt
-function prompt {
-    Write-Host ("PS " + (Get-Location).Path + ">") -ForegroundColor Green -NoNewline
-    return " "
-}
-
-# Welcome message
-Write-Host "Welcome to PowerShell, Hassanein!" -ForegroundColor Cyan
-```
-
-ثم احفظ الملف وأغلق المفكرة.
-
----
-
-## 🔹 رابعًا: السماح بتنفيذ السكربتات (مهم جدًا)
-
-بشكل افتراضي، يمنع PowerShell تشغيل الملفات مثل profile.ps1 بسبب الأمان.  
-فعّل التنفيذ عبر هذا الأمر (كـمسؤول):
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-ثم اختر **Y** (نعم) واضغط **Enter**.
-
----
-
-## 🔹 خامسًا: إعادة تشغيل PowerShell
-
-أغلق PowerShell وافتحه مجددًا.  
-يجب أن ترى الآن رسالتك أو أي أوامر وضعتها في الملف تعمل تلقائيًا 🎯
-
----
-
-## ✅ ملاحظات إضافية
-
-- يمكنك تعديل الملف في أي وقت لتغيير الإعدادات أو إضافة أوامر جديدة.  
-- إذا كنت تستخدم **PowerShell 7**، فقد يكون المسار مختلفًا قليلًا مثل:
-  ```
-  C:\Users\<اسم_المستخدم>\Documents\PowerShell\Microsoft.PowerShell_profile.ps1
-  ```
-- لتشغيل الملف يدويًا في أي وقت:
-  ```powershell
-  & $PROFILE
-  ```
-
----
-
-هل تريد مثالًا أكثر تقدمًا بميزات مطورين (عرض فرع Git، ألوان متغيرة، ومسار مختصر)؟ 😎
+The script customises **Microsoft.PowerShell_profile.ps1** to dynamically set a new PowerShell history file path based on the current working directory.  
+It also uses the **PowerShell.OnLocationChanged** event (available in PowerShell 7+) to automatically update the log path whenever you change directories.
